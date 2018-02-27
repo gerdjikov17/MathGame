@@ -1,0 +1,7 @@
+<vector android:height="24dp" android:viewportHeight="600"
+    android:viewportWidth="800" android:width="24dp" xmlns:android="http://schemas.android.com/apk/res/android">
+    <path android:fillColor="#ECECE8"
+        android:strokeWidth="1"
+        android:strokeColor="#000000"
+        android:name="Rounded Rectangle 2 copy 2" android:pathData="m457.9 383h54.1c1.1 0 1.9 2.3 1.9 5.1v34.7c0 2.8 -0.9 5.1 -1.9 5.1h-54.1c-1.1 0 -1.9 -2.3 -1.9 -5.1v-34.7c0 -2.8 0.9 -5.1 1.9 -5.1z"/>
+</vector>

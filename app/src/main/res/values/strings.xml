@@ -1,0 +1,48 @@
+<resources>
+    <string name="app_name" translatable="false">Math Game</string>
+    <string name="title_activity_login">Login</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_username">Username:</string>
+    <string name="prompt_password">Password:</string>
+    <string name="action_sign_in">Sign up</string>
+    <string name="action_sign_in_short">Sign up</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="time_name">Time:</string>
+    <string name="game_over" translatable="false">Game Over!</string>
+    <string name="try_again">Try Again!</string>
+    <string name="my_menu">MENU</string>
+    <string name="exit">EXIT</string>
+    <string-array name="difficulty_array">
+        <item>Easy</item>
+        <item>Medium</item>
+        <item>Hard</item>
+    </string-array>
+    <string-array name="game_type_array">
+        <item>Addition</item>
+        <item>Subtraction</item>
+        <item>Multiplication</item>
+        <item>Root</item>
+        <item>Arcade</item>
+    </string-array>
+    <string name="choose_difficulty">Choose Difficulty</string>
+    <string name="choose_game_type">Choose Game Type</string>
+    <string name="back">Go Back</string>
+    <string name="start_game_button">Start Game</string>
+    <string name="play_now">Play Now</string>
+    <string name="time_left">"Time Left: "</string>
+    <string name="lives">"Lives: "</string>
+    <string name="score">"Score: "</string>
+    <string name="email" translatable="false">Email:</string>
+    <string name="id_fmt">User ID: %s</string>
+    <string name="email_fmt">Email: %s</string>
+    <string name="AdditionHighScore">Addition</string>
+    <string name="subtraction">Subtraction</string>
+    <string name="division">Division</string>
+    <string name="high_scores">High Scores:</string>
+    <string name="logout">Log out</string>
+    <string name="register_here">Register Here!</string>
+</resources>

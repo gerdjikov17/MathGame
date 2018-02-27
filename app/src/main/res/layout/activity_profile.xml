@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.gerdjikov.mathgame.ProfileActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/background"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="casual"
+            android:text="Profile"
+            android:textAlignment="center"
+            android:textColor="@color/Snow"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:fontFamily="casual"
+            android:id="@+id/tvUsername"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/textView"
+            android:text="Username:"
+            android:textAlignment="center"
+            android:textColor="@color/Snow"
+            android:textSize="30sp" />
+
+        <TextView
+            android:fontFamily="casual"
+            android:id="@+id/etUserName"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_alignBaseline="@+id/tvUsername"
+            android:layout_alignBottom="@+id/tvUsername"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_toEndOf="@+id/tvUsername"
+            android:layout_toRightOf="@+id/tvUsername"
+            android:ems="10"
+            android:textColor="@color/AliceBlue"
+            android:textSize="30sp" />
+
+        <TextView
+            android:fontFamily="casual"
+            android:id="@+id/textView10"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/sHighScore"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="27dp"
+            android:text="High Scores"
+            android:textAlignment="center"
+            android:textColor="@color/Snow"
+            android:textSize="30sp"
+            android:textStyle="bold" />
+
+        <Spinner
+            android:fontFamily="casual"
+            android:id="@+id/sHighScore"
+            style="@style/Widget.AppCompat.Light.Spinner.DropDown.ActionBar"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:textAlignment="center"
+            android:minHeight="80dp"/>
+
+        <TextView
+            android:fontFamily="casual"
+            android:id="@+id/tvGameType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/sHighScore"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="18dp"
+            android:text="TextView"
+            android:textColor="@color/Snow" />
+
+        <TextView
+            android:fontFamily="casual"
+            android:id="@+id/tvHighScoreProfile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvGameType"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="21dp"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="@color/Snow"
+            android:textSize="40sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:fontFamily="casual"
+            android:id="@+id/registerHere"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvUsername"
+            android:layout_toEndOf="@+id/textView10"
+            android:layout_toRightOf="@+id/textView10"
+            android:text="Register Here!"
+            android:textColor="@color/Snow" />
+        <FrameLayout
+            android:id="@+id/fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </FrameLayout>
+
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

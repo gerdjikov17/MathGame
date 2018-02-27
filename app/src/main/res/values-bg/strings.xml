@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MathGame</string>
+    <string name="title_activity_login">Влизане</string>
+    <string name="prompt_username">Име</string>
+    <string name="prompt_password">Парола</string>
+    <string name="action_sign_in">Регистрация</string>
+    <string name="action_sign_in_short">Регистрация</string>
+    <string name="error_invalid_email">Имейл адресът е невалиден!</string>
+    <string name="error_invalid_password">Паролата е твърде къса!</string>
+    <string name="error_incorrect_password">Грешна парола!</string>
+    <string name="error_field_required">Това поле е задължително</string>
+    <string name="time_name">Време:</string>
+    <string name="try_again">Опитай пак!</string>
+    <string name="my_menu">МЕНЮ</string>
+    <string name="exit">ИЗХОД</string>
+    <string name="choose_difficulty">Избери Трудност</string>
+    <string name="choose_game_type">Избери тип игра</string>
+    <string name="back">Върни се!</string>
+    <string name="start_game_button">Започни Игра</string>
+    <string name="play_now">Започни</string>
+    <string name="time_left">"Време: "</string>
+    <string name="lives">"Живот: "</string>
+    <string name="score">"Точки: "</string>
+    <string name="Settings">Настройки</string>
+    <string name="profile">Профил</string>
+</resources>
