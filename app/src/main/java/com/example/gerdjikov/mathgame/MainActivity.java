@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -12,7 +15,7 @@ import android.widget.Button;
 
 
 public class MainActivity extends Activity implements View.OnClickListener {
-    Button mGameButton, mExitButton;
+    Button mGameButton, mExitButton, mLoginButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,11 +24,13 @@ public class MainActivity extends Activity implements View.OnClickListener {
 
         mGameButton = findViewById(R.id.gameButton);
         mExitButton = findViewById(R.id.exitButton);
+        mLoginButton = findViewById(R.id.loginButton);
 
         mGameButton.setOnClickListener(this);
         mExitButton.setOnClickListener(this);
 
         loadFragment();
+
 
     }
 

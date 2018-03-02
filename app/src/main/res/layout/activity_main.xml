@@ -13,13 +13,14 @@
         android:orientation="vertical">
 
         <Button
-            android:layout_marginTop="100dp"
             android:id="@+id/regButton"
             android:layout_width="match_parent"
             android:layout_height="70dp"
+            android:layout_marginTop="100dp"
             android:fontFamily="casual"
             android:text="@string/action_sign_in"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="invisible" />
 
         <Button
             android:id="@+id/loginButton"
@@ -29,7 +30,8 @@
             android:fontFamily="casual"
             android:text="@string/title_activity_login"
             android:textColorLink="@android:color/holo_blue_dark"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:visibility="invisible" />
 
         <Button
             android:id="@+id/gameButton"

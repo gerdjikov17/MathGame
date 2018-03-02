@@ -15,6 +15,9 @@ import android.widget.Toast;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.InterstitialAd;
+import com.google.android.gms.ads.MobileAds;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -26,11 +29,21 @@ public class GameOverActivity extends AppCompatActivity implements View.OnClickL
     TextView mScore;
     SharedPreferences highScorePref;
     boolean isLogged=false;
+    private InterstitialAd mInterstitialAd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_over);
+
+/*        MobileAds.initialize(this,
+                "ca-app-pub-3940256099942544~3347511713");
+
+        mInterstitialAd = new InterstitialAd(this);
+        mInterstitialAd.setAdUnitId("ca-app-pub-3940256099942544/1033173712");
+        mInterstitialAd.loadAd(new AdRequest.Builder().build());*/
+
+
         mMenu = findViewById(R.id.goToMenuButton);
         mTryAgain = findViewById(R.id.tryAgainButton);
         mScore = findViewById(R.id.scoreOver);
@@ -49,6 +62,11 @@ public class GameOverActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View view) {
         if (view.getId() == R.id.tryAgainButton) {
             Intent i = new Intent(GameOverActivity.this, ChooseGame.class);
+/*            if (mInterstitialAd.isLoaded()) {
+                mInterstitialAd.show();
+            } else {
+                Log.d("TAG", "The interstitial wasn't loaded yet.");
+            }*/
             startActivity(i);
             finish();
         }
@@ -96,6 +114,22 @@ public class GameOverActivity extends AppCompatActivity implements View.OnClickL
             if (score > multiplicationHighScore) {
                 SharedPreferences.Editor editor = highScorePref.edit();
                 editor.putInt(PREFS_MULTIPLICATION_HIGHSCORE, score);
+                editor.apply();
+            }
+        }
+        if (gameType.equals("Root")) {
+            int rootHighScore = highScorePref.getInt(PREFS_ROOT_HIGHSCORE, 0);
+            if (score > rootHighScore) {
+                SharedPreferences.Editor editor = highScorePref.edit();
+                editor.putInt(PREFS_ROOT_HIGHSCORE, score);
+                editor.apply();
+            }
+        }
+        if (gameType.equals("Arcade")) {
+            int arcadeHighScore = highScorePref.getInt(PREFS_ARCADE_HIGHSCORE, 0);
+            if (score > arcadeHighScore) {
+                SharedPreferences.Editor editor = highScorePref.edit();
+                editor.putInt(PREFS_ARCADE_HIGHSCORE, score);
                 editor.apply();
             }
         }

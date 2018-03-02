@@ -1,6 +1,7 @@
 package com.example.gerdjikov.mathgame;
 
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.CountDownTimer;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,39 +9,38 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import java.util.Arrays;
-import java.util.Comparator;
 import java.util.concurrent.TimeUnit;
 
+import static com.example.gerdjikov.mathgame.Constants.PREFS_NAME;
+import static com.example.gerdjikov.mathgame.Constants.PREFS_SOUND;
+
 public class GameActivity extends AppCompatActivity implements View.OnClickListener {
-    TextView mLeftText, mSymbol, mRightText, mTimeLabel, mScore, mLives;
-    Button mLeftButton, mMiddleButton, mRightButton, mBackButton;
-    int score = 0, lives = 3;
-    int leftNumber, rightNumber, resultNumber, multiplication;
-    int secondsForTimer=10000;
-    //Vibrator vibrator = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
-    CountDownTimer timer;
-    String difficulty,gameType;
-    static boolean active = true;
+    private static boolean active = true;
+    private TextView mProblem, mTimeLabel, mScore, mLives;
+    private Button mLeftButton, mMiddleButton, mRightButton;
+    private int score = 0, lives = 3;
+    private int resultNumber;
+    private int secondsForTimer = 10000;
+    private CountDownTimer timer;
+    private String gameType;
+    private Numbers numbers;
+    private MediaPlayer player;
+    //String difficulty;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game);
         active=true;
-        mSymbol = findViewById(R.id.symbol);
-        setDifficulty();
-        setGameType();
+
+        //setDifficulty();
+        gameType = getIntent().getStringExtra("gameType");
+        numbers = new Numbers("Easy");
+
         timer = new CountDownTimer(secondsForTimer, 1000) {
             @Override
             public void onTick(long l) {
                 mTimeLabel.setText(String.valueOf(TimeUnit.MILLISECONDS.toSeconds(l)));
-                if(l<3000) {
-                    //vibrator.vibrate(500);
-                }
-                if(l<1000){
-                    //vibrator.vibrate(500);
-                }
             }
 
             @Override
@@ -53,20 +53,21 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         mLeftButton = findViewById(R.id.leftButton);
         mMiddleButton = findViewById(R.id.middleButton);
         mRightButton = findViewById(R.id.rightButton);
-        mLeftText = findViewById(R.id.leftNumber);
-        mRightText = findViewById(R.id.rightNumber);
         mTimeLabel = findViewById(R.id.timerText);
         mScore = findViewById(R.id.score);
         mLives = findViewById(R.id.lives);
-//        mBackButton = findViewById(R.id.backButton);
+        mProblem = findViewById(R.id.problem);
 
         mMiddleButton.setOnClickListener(this);
         mLeftButton.setOnClickListener(this);
         mRightButton.setOnClickListener(this);
-//      mBackButton.setOnClickListener(this);
         mScore.setText(String.valueOf(score));
         mLives.setText(String.valueOf(lives));
-
+        if (getSharedPreferences(PREFS_NAME, 0).getBoolean(PREFS_SOUND, true)) {
+            player = MediaPlayer.create(this, R.raw.blue_wonder);
+            player.setLooping(true);
+            player.start();
+        }
         generateNumbers();
     }
 
@@ -93,20 +94,26 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
                 livesDown();
             }
         }
-       /* if (view.getId()==R.id.backButton){
-            Intent i = new Intent(GameActivity.this,MainActivity.class);
-            startActivity(i);
-            finish();
-            active=false;
-        }*/
     }
 
     public void scoreUp() {
         generateNumbers();
         score++;
-        if(score%10==0){
+        if ((score % 10 == 0) && lives < 3) {
             lives++;
             mLives.setText(String.valueOf(lives));
+        }
+        if (score == 20) {
+            numbers.setDifficulty("Medium");
+            secondsForTimer -= 1000;
+        }
+        if (score == 50) {
+            numbers.setDifficulty("Hard");
+            secondsForTimer -= 1000;
+        }
+        if (score == 100) {
+            numbers.setDifficulty("Insane");
+            secondsForTimer -= 1000;
         }
         mScore.setText(String.valueOf(score));
         timer.start();
@@ -121,59 +128,40 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void generateNumbers() {
-        Integer[] row = new Integer[3];
-        leftNumber = (int) ((Math.random() * multiplication) +3);
-        rightNumber = (int) ((Math.random() * multiplication) +3);
 
-        if(gameType.equals("Addition"))
-            resultNumber = leftNumber + rightNumber;
-
-        if(gameType.equals("Multiplication"))
-            resultNumber = leftNumber * rightNumber;
-
-        if(gameType.equals("Subtraction")){
-            if(leftNumber<rightNumber){
-                int temp = leftNumber;
-                leftNumber=rightNumber;
-                rightNumber=temp;
-            }
-            resultNumber=leftNumber-rightNumber;
+        int[] row;
+        switch (gameType) {
+            case "Addition":
+                numbers.generateAddition();
+                break;
+            case "Subtraction":
+                numbers.generateSubtraction();
+                break;
+            case "Multiplication":
+                numbers.generateMultiplication();
+                break;
+            case "Root":
+                numbers.generateRoot();
+                break;
+            case "Arcade":
+                numbers.generateArcade();
+                break;
         }
-        row[0] = resultNumber;
 
-        if(getBoolean())row[1] = (int)(resultNumber*1.12);
-        else row[1]=(int)(resultNumber*0.9);
-
-        if(getBoolean())row[2] = (int)(resultNumber*1.2);
-        else row[2]=(int)(resultNumber*0.8);
-
-        Arrays.sort(row, new Comparator<Integer>()
-        {
-            @Override
-            public int compare(Integer x, Integer y)
-            {
-                return x - y;
-            }
-        });
-
-        mLeftText.setText(String.valueOf(leftNumber));
-        mRightText.setText(String.valueOf(rightNumber));
-
+        row = numbers.getArr();
+        resultNumber = numbers.getResultNumber();
+        mProblem.setText(numbers.getProblem());
         mLeftButton.setText(String.valueOf(row[0]));
         mRightButton.setText(String.valueOf(row[1]));
         mMiddleButton.setText(String.valueOf(row[2]));
     }
 
-    private boolean getBoolean() {
-        double num = Math.random();
-        if(num>0.5)return true;
-        else return false;
-    }
     private void gameOver(){
         Intent i = new Intent(GameActivity.this,GameOverActivity.class);
         i.putExtra("score",score);
         i.putExtra("gameType",gameType);
         startActivity(i);
+        if (getSharedPreferences(PREFS_NAME, 0).getBoolean(PREFS_SOUND, true)) player.stop();
         finish();
 
     }
@@ -184,36 +172,22 @@ public class GameActivity extends AppCompatActivity implements View.OnClickListe
         finish();
         active=false;
         timer.cancel();
+        if (getSharedPreferences(PREFS_NAME, 0).getBoolean(PREFS_SOUND, true)) player.stop();
     }
 
-    private void setDifficulty(){
-        difficulty=(String)getIntent().getStringExtra("difficulty");
+/*    private void setDifficulty(){
+        difficulty=getIntent().getStringExtra("difficulty");
         switch(difficulty){
             case "Easy":secondsForTimer=10000;
                         break;
             case "Medium":secondsForTimer=7500;
                         break;
-            case "Hard":secondsForTimer=5000;
+            case "Hard":secondsForTimer=7500;
+                        break;
+            case "Insane":secondsForTimer=5000;
                         break;
         }
-    }
-    private void setGameType(){
-        gameType=(String)getIntent().getStringExtra("gameType");
-        switch(gameType){
-            case "Addition":
-                multiplication=100;
-                mSymbol.setText("+");
-                break;
-            case "Subtraction":
-                multiplication=100;
-                mSymbol.setText("-");
-                break;
-            case "Multiplication":
-                multiplication=10;
-                mSymbol.setText("*");
-                break;
-        }
-    }
+    }*/
 
     @Override
     protected void onPostResume() {

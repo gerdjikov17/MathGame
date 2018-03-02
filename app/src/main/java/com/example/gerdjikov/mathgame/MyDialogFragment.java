@@ -87,6 +87,7 @@ public class MyDialogFragment extends DialogFragment {
 
                                 editor.apply();
                                 getDialog().dismiss();
+                                Toast.makeText(getActivity(), "Login successful!", Toast.LENGTH_LONG).show();
 
                                 FragmentManager fm = getFragmentManager();
                                 FragmentTransaction fragmentTransaction = fm.beginTransaction();

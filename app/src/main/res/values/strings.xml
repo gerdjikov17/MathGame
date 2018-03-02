@@ -20,6 +20,7 @@
         <item>Easy</item>
         <item>Medium</item>
         <item>Hard</item>
+        <item>Insane</item>
     </string-array>
     <string-array name="game_type_array">
         <item>Addition</item>
@@ -44,5 +45,8 @@
     <string name="division">Division</string>
     <string name="high_scores">High Scores:</string>
     <string name="logout">Log out</string>
+    <string name="change_password">Change password!</string>
     <string name="register_here">Register Here!</string>
+    <string name="empty_spaces" />
+    <string name="profile">Profile</string>
 </resources>
