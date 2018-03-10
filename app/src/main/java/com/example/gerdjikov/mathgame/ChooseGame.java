@@ -31,7 +31,7 @@ public class ChooseGame extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choose_game);
         MobileAds.initialize(this,
-                "ca-app-pub-3293000837894400~1288254849");
+                "APP_ID");
         mAdView = findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
