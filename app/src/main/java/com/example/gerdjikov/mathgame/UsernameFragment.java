@@ -39,7 +39,7 @@ public class UsernameFragment extends Fragment {
         Context context = getActivity();
 
         MobileAds.initialize(getActivity(),
-                "ca-app-pub-3293000837894400~1288254849");
+                "APP_ID");
         mAdView = view.findViewById(R.id.adView);
         AdRequest adRequest = new AdRequest.Builder().build();
         mAdView.loadAd(adRequest);
