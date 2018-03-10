@@ -17,7 +17,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             ads:adSize="BANNER"
-            ads:adUnitId="ca-app-pub-3293000837894400/5955146219"></com.google.android.gms.ads.AdView>
+            ads:adUnitId="AD ID"></com.google.android.gms.ads.AdView>
         <Button
             android:id="@+id/volumeButton"
             style="@style/Widget.AppCompat.Button.Small"
